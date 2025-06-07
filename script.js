@@ -99,9 +99,9 @@ const designs = [
 
 const projects = [
   {
-    title: "30-Day Sketch Challenge",
-    meta: "Skill: Drawing • 18/30 Days Complete",
-    progress: 60,
+    title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
+    meta: "Skill: Controlled breathing, coordination, endurance • 1/30 Days Complete",
+    progress: 3.33,
     public: true,
   },
   {
