@@ -63,11 +63,10 @@ const writingPieces = [
 
 const photos = [
   {
-title: "Camp"
-date: "22-05-2021"
-description: "A night of shared stories under the open sky"
-tags: ["camping", "nature", "night"]
-image_path: "/content/photography/camping.png"
+  src: "content/photography/camping.png",
+  caption: "Camp",
+  category: "nature",  // Choose from: street, portraits, abstract, nature
+  tags: ["camping", "night"]  // Add relevant tags
   },
   {
     src: "placeholder-image.svg",
