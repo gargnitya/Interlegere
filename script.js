@@ -8,9 +8,9 @@ const latestPosts = [
   },
   {
     category: "Photography",
-    title: "Night Walks",
-    date: "2025-05-28",
-    preview: "A photo series from midnight strolls in the city.",
+    title: "Camp",
+    date: "22-05-2021",
+    preview: "A night of shared stories under the open sky",
   },
   {
     category: "Product Design",
@@ -65,7 +65,7 @@ const photos = [
   {
 title: "Camp"
 date: "22-05-2021"
-description: ""
+description: "A night of shared stories under the open sky"
 tags: ["camping", "nature", "night"]
 image_path: "/content/photography/camping.png"
   },
