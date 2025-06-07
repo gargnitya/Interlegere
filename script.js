@@ -1,35 +1,4 @@
-// Sample data for demonstration - only showing real content, placeholders removed from display
-
-const latestPosts = [
-  {
-    category: "Photography",
-    title: "Camp",
-    dateTaken: "22-05-2021",
-    uploadDate: "08-06-2025",
-    preview: "A night of shared stories under the open sky",
-    id: "camp-photo",
-    type: "photography"
-  },
-  {
-    category: "Personal Projects",
-    title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
-    uploadDate: "07-06-2025",
-    preview: "My progress and thoughts from a month of swimming consistently.",
-    id: "swim-challenge",
-    type: "personal-projects"
-  }
-];
-
-const writingPieces = [
-  // Placeholder structure kept for future content additions
-  // {
-  //   title: "Sample Writing Piece",
-  //   preview: "Preview text...",
-  //   full: "Full content...",
-  //   uploadDate: "08-06-2025",
-  //   tags: ["tag1", "tag2"]
-  // }
-];
+// --- DATA ---
 
 const photos = [
   {
@@ -40,9 +9,8 @@ const photos = [
     description: "A night of shared stories under the open sky",
     tags: ["camping", "night", "nature"],
     id: "camp-photo"
-  }
-
- {
+  },
+  {
     src: "content/photography/Holi.png",
     title: "Holi",
     dateTaken: "08-03-2023",
@@ -51,18 +19,14 @@ const photos = [
     tags: ["festival", "colours"],
     id: "holi-photo"
   }
-  // Placeholder photos removed from display
+];
+
+const writingPieces = [
+  // Add your writing pieces here when ready
 ];
 
 const designs = [
-  // Placeholder structure kept for future content additions
-  // {
-  //   title: "Design Project",
-  //   meta: "2025 • Tools: Figma",
-  //   desc: "Description...",
-  //   uploadDate: "08-06-2025",
-  //   tags: ["design", "product"]
-  // }
+  // Add your design projects here when ready
 ];
 
 const projects = [
@@ -75,24 +39,12 @@ const projects = [
     tags: ["swimming", "endurance", "challenge"],
     id: "swim-challenge"
   }
-  // Placeholder projects removed from display
 ];
 
-// Current photo index for lightbox navigation
-let currentPhotoIndex = 0;
-let currentVisiblePhotos = [];
+// --- HELPERS ---
 
-// Dark mode state
-let darkModeStates = {
-  'writing': false,
-  'personal-projects': false
-};
-
-// Auto-collect all content for "Published Lately"
 function getAllContent() {
   const allContent = [];
-  
-  // Add photos
   photos.forEach(photo => {
     if (photo.uploadDate) {
       allContent.push({
@@ -105,8 +57,6 @@ function getAllContent() {
       });
     }
   });
-  
-  // Add writing pieces
   writingPieces.forEach(piece => {
     if (piece.uploadDate) {
       allContent.push({
@@ -119,8 +69,6 @@ function getAllContent() {
       });
     }
   });
-  
-  // Add designs
   designs.forEach(design => {
     if (design.uploadDate) {
       allContent.push({
@@ -133,8 +81,6 @@ function getAllContent() {
       });
     }
   });
-  
-  // Add projects
   projects.forEach(project => {
     if (project.uploadDate) {
       allContent.push({
@@ -147,34 +93,27 @@ function getAllContent() {
       });
     }
   });
-  
-  // Sort by upload date (most recent first) and return top 6
   return allContent.sort((a, b) => new Date(b.uploadDate.split('-').reverse().join('-')) - new Date(a.uploadDate.split('-').reverse().join('-'))).slice(0, 6);
 }
 
-// Format date to DD-MM-YYYY
 function formatDate(dateString) {
   if (!dateString) return '';
   return dateString; // Already in DD-MM-YYYY format
 }
 
-// Tab navigation
-document.addEventListener('DOMContentLoaded', function() {
-   // Only show if not previously dismissed
-  if (!sessionStorage.getItem('modalDismissed')) {
-    const modal = document.getElementById('disqus-modal'); // Use the actual modal ID
-    if (modal) modal.style.display = 'block';
-  }
-  
-  // Add this to close buttons
-  document.querySelectorAll('.modal-close').forEach(button => {
-    button.addEventListener('click', function() {
-      sessionStorage.setItem('modalDismissed', 'true');
-    });
-  });
-});
+// --- RENDER FUNCTIONS ---
 
-  // Initial render
+document.addEventListener('DOMContentLoaded', function() {
+  // Tab navigation
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.onclick = function() {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    };
+  });
+
   renderLatest();
   renderWriting();
   renderPhotos();
@@ -187,10 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function renderLatest() {
   const latestDiv = document.getElementById('latest-posts');
   if (!latestDiv) return;
-  
   const content = getAllContent();
   latestDiv.innerHTML = '';
-  
   content.forEach(post => {
     latestDiv.innerHTML += `
       <div class="latest-card" onclick="openContentPage('${post.type}', '${post.id}')">
@@ -207,14 +144,10 @@ function renderLatest() {
 function renderWriting() {
   const writingDiv = document.getElementById('writing-list');
   if (!writingDiv) return;
-  
   writingDiv.innerHTML = '';
-  
-  // Sort writing pieces by upload date
   const sortedWriting = [...writingPieces].sort((a, b) => 
-    new Date(b.uploadDate.split('-').reverse().join('-')) - new Date(a.uploadDate.split('-').reverse().join('-'))
+    new Date(b.uploadDate?.split('-').reverse().join('-')) - new Date(a.uploadDate?.split('-').reverse().join('-'))
   );
-  
   sortedWriting.forEach((piece, idx) => {
     const pieceId = piece.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
     writingDiv.innerHTML += `
@@ -231,10 +164,8 @@ function renderWriting() {
 function renderPhotos() {
   const grid = document.getElementById('photo-grid');
   if (!grid) return;
-  
   grid.innerHTML = '';
   currentVisiblePhotos = [...photos];
-  
   photos.forEach((photo, index) => {
     const randomHeight = Math.floor(Math.random() * 3) + 1; // Random height for chaos
     grid.innerHTML += `
@@ -254,7 +185,6 @@ function renderPhotos() {
 function renderDesigns() {
   const list = document.getElementById('design-list');
   if (!list) return;
-  
   list.innerHTML = '';
   designs.forEach(design => {
     const designId = design.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -273,7 +203,6 @@ function renderDesigns() {
 function renderProjects() {
   const list = document.getElementById('projects-list');
   if (!list) return;
-  
   list.innerHTML = '';
   projects.forEach(proj => {
     list.innerHTML += `
@@ -292,8 +221,6 @@ function renderProjects() {
 // Tags functionality
 function collectAllTags() {
   const tagMap = {};
-  
-  // Collect from photos
   photos.forEach(photo => {
     if (photo.tags) {
       photo.tags.forEach(tag => {
@@ -307,8 +234,6 @@ function collectAllTags() {
       });
     }
   });
-  
-  // Collect from writing
   writingPieces.forEach(piece => {
     if (piece.tags) {
       piece.tags.forEach(tag => {
@@ -322,8 +247,6 @@ function collectAllTags() {
       });
     }
   });
-  
-  // Collect from designs
   designs.forEach(design => {
     if (design.tags) {
       design.tags.forEach(tag => {
@@ -337,8 +260,6 @@ function collectAllTags() {
       });
     }
   });
-  
-  // Collect from projects
   projects.forEach(project => {
     if (project.tags) {
       project.tags.forEach(tag => {
@@ -352,17 +273,14 @@ function collectAllTags() {
       });
     }
   });
-  
   return tagMap;
 }
 
 function renderTags() {
   const tagList = document.getElementById('tag-list');
   if (!tagList) return;
-  
   const allTags = collectAllTags();
   tagList.innerHTML = '';
-  
   Object.keys(allTags).sort().forEach(tag => {
     tagList.innerHTML += `
       <span class="tag-item" onclick="showTagResults('${tag}')">#${tag}</span>
@@ -374,17 +292,13 @@ function showTagResults(selectedTag) {
   const resultsDiv = document.getElementById('tag-results');
   const allTags = collectAllTags();
   const taggedItems = allTags[selectedTag] || [];
-  
   resultsDiv.innerHTML = `<h3>Content tagged with #${selectedTag}</h3>`;
-  
   if (taggedItems.length === 0) {
     resultsDiv.innerHTML += '<p>No content found with this tag.</p>';
     return;
   }
-  
   const resultsList = document.createElement('div');
   resultsList.className = 'tag-results-list';
-  
   taggedItems.forEach(item => {
     resultsList.innerHTML += `
       <div class="tag-result-item" onclick="openContentPage('${item.type}', '${item.id}')">
@@ -392,7 +306,6 @@ function showTagResults(selectedTag) {
       </div>
     `;
   });
-  
   resultsDiv.appendChild(resultsList);
 }
 
@@ -402,11 +315,8 @@ function openContentPage(contentType, contentId) {
   const modalBody = document.getElementById('modal-body');
   const breadcrumb = document.getElementById('breadcrumb');
   const relatedList = document.getElementById('related-list');
-  
   let content = null;
   let sectionName = '';
-  
-  // Find the content based on type and ID
   switch(contentType) {
     case 'photography':
       content = photos.find(p => p.id === contentId);
@@ -425,13 +335,8 @@ function openContentPage(contentType, contentId) {
       sectionName = 'Personal Projects';
       break;
   }
-  
   if (!content) return;
-  
-  // Set breadcrumb
   breadcrumb.innerHTML = `<a href="#" onclick="closeModal()">Home</a> > <a href="#" onclick="closeModal(); document.querySelector('[data-tab=${contentType}]').click()">${sectionName}</a> > ${content.title}`;
-  
-  // Set content based on type
   if (contentType === 'photography') {
     modalBody.innerHTML = `
       <h1>${content.title}</h1>
@@ -478,15 +383,8 @@ function openContentPage(contentType, contentId) {
       </div>
     `;
   }
-  
-  // Show related content
   showRelatedContent(content, relatedList);
-  
-  // Show modal
   modal.style.display = 'block';
-  
-  // Load Disqus comments
-  loadDisqus();
 }
 
 function showRelatedContent(currentContent, container) {
@@ -494,10 +392,8 @@ function showRelatedContent(currentContent, container) {
     container.innerHTML = '<p>No related content found.</p>';
     return;
   }
-  
   const allTags = collectAllTags();
   const relatedItems = [];
-  
   currentContent.tags.forEach(tag => {
     if (allTags[tag]) {
       allTags[tag].forEach(item => {
@@ -507,17 +403,13 @@ function showRelatedContent(currentContent, container) {
       });
     }
   });
-  
-  // Remove duplicates
   const uniqueRelated = relatedItems.filter((item, index, self) => 
     index === self.findIndex(i => i.id === item.id)
   );
-  
   if (uniqueRelated.length === 0) {
     container.innerHTML = '<p>No related content found.</p>';
     return;
   }
-  
   container.innerHTML = uniqueRelated.map(item => 
     `<div class="related-item" onclick="openContentPage('${item.type}', '${item.id}')">${item.title} | ${item.category}</div>`
   ).join('');
@@ -542,7 +434,6 @@ function updateLightboxContent() {
   document.getElementById('lightbox-date-taken').textContent = `Taken: ${photo.dateTaken}`;
   document.getElementById('lightbox-date-uploaded').textContent = `Published: ${formatDate(photo.uploadDate)}`;
   document.getElementById('lightbox-description').textContent = photo.description;
-  
   const tagsContainer = document.getElementById('lightbox-tags');
   if (photo.tags) {
     tagsContainer.innerHTML = photo.tags.map(tag => 
@@ -565,23 +456,10 @@ function closeLightbox() {
   document.getElementById('photo-lightbox').style.display = 'none';
 }
 
-// Dark mode functionality
-function toggleDarkMode(section) {
-  const sectionElement = document.getElementById(section);
-  darkModeStates[section] = !darkModeStates[section];
-  
-  if (darkModeStates[section]) {
-    sectionElement.classList.add('dark-mode');
-  } else {
-    sectionElement.classList.remove('dark-mode');
-  }
-}
-
 // Close modals when clicking outside
 window.onclick = function(event) {
   const modal = document.getElementById('content-modal');
   const lightbox = document.getElementById('photo-lightbox');
-  
   if (event.target === modal) {
     closeModal();
   }
