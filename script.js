@@ -150,15 +150,19 @@ function formatDate(dateString) {
 
 // Tab navigation
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize tab navigation
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.onclick = function() {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.tab).classList.add('active');
-    };
+   // Only show if not previously dismissed
+  if (!sessionStorage.getItem('modalDismissed')) {
+    const modal = document.getElementById('disqus-modal'); // Use the actual modal ID
+    if (modal) modal.style.display = 'block';
+  }
+  
+  // Add this to close buttons
+  document.querySelectorAll('.modal-close').forEach(button => {
+    button.addEventListener('click', function() {
+      sessionStorage.setItem('modalDismissed', 'true');
+    });
   });
+});
 
   // Initial render
   renderLatest();
