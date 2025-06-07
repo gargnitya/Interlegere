@@ -16,7 +16,7 @@ device: "iPhone 11 Pro in Night Mode"
     title: "Holi",
     dateTaken: "08-03-2023",
     uploadDate: "08-06-2025",
-device: "iPhone 13 Pro"
+device: "iPhone 13 Pro",
     description: "Do colours on the outside mask our inner demons?",
     tags: ["festival", "colours"],
     id: "holi-photo"
