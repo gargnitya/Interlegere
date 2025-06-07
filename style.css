@@ -5,9 +5,10 @@
   --color-surface: rgba(255, 255, 253, 1);
   --color-text: rgba(19, 52, 59, 1);
   --color-text-secondary: rgba(98, 108, 113, 1);
-  --color-primary: rgba(33, 128, 141, 1);
-  --color-primary-hover: rgba(29, 116, 128, 1);
-  --color-primary-active: rgba(26, 104, 115, 1);
+  --color-primary: #FF6700; /* Change to Safety Orange */
+  --color-primary-hover: #E65A00; /* Slightly darker shade for hover states */
+  --color-primary-active: #CC5000; /* Even darker for active states */
+  /* Any other color variables should be updated accordingly */
   --color-secondary: rgba(94, 82, 64, 0.12);
   --color-secondary-hover: rgba(94, 82, 64, 0.2);
   --color-secondary-active: rgba(94, 82, 64, 0.25);
