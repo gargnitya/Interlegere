@@ -344,6 +344,7 @@ function openContentPage(contentType, contentId) {
       <h1>${content.title}</h1>
       <img src="${content.src}" alt="${content.title}" class="modal-image">
       <p><strong>Taken:</strong> ${content.dateTaken}</p>
+<p><strong>Device:</strong> ${content.device ? content.device : 'Unknown'}</p>
       <p><strong>Published:</strong> ${formatDate(content.uploadDate)}</p>
       <p>${content.description}</p>
       <div class="modal-tags">
