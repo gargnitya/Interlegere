@@ -6,7 +6,7 @@ const photos = [
     title: "Camp",
     dateTaken: "22-05-2021",
     uploadDate: "08-06-2025",
-device: "iPhone 11 Pro in Night Mode"
+device: "iPhone 11 Pro in Night Mode",
     description: "A night of shared stories under the open sky",
     tags: ["camping", "night", "nature"],
     id: "camp-photo"
