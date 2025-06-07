@@ -673,6 +673,15 @@ main {
   cursor: pointer;
 }
 
+.latest-photo-preview {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  display: block;
+  object-fit: cover;
+}
+
 .latest-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
