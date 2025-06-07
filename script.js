@@ -11,7 +11,7 @@ const photos = [
     id: "camp-photo"
   },
   {
-    src: "content/photography/Holi.png",
+    src: "content/photography/holi.png",
     title: "Holi",
     dateTaken: "08-03-2023",
     uploadDate: "08-06-2025",
