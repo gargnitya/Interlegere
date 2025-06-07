@@ -767,52 +767,6 @@ main {
   margin-bottom: var(--space-24);
 }
 
-.dark-mode-toggle {
-  background: var(--color-surface);
-  border: none;
-  padding: var(--space-8);
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  font-size: var(--font-size-xl);
-  transition: background var(--duration-normal) var(--ease-standard);
-}
-
-.dark-mode-toggle:hover {
-  background: var(--color-secondary);
-}
-
-/* Dark mode styles - applies to entire sections */
-.tab-content.dark-mode {
-  background: var(--color-background);
-  color: var(--color-text);
-  padding: var(--space-32);
-  border-radius: var(--radius-lg);
-  margin-top: var(--space-16);
-}
-
-.tab-content.dark-mode h2 {
-  color: var(--color-text);
-}
-
-.tab-content.dark-mode .writing-piece,
-.tab-content.dark-mode .project-card {
-  background: var(--color-surface);
-  color: var(--color-text);
-  border-left-color: var(--color-primary);
-}
-
-.tab-content.dark-mode .writing-title,
-.tab-content.dark-mode .project-title {
-  color: var(--color-text);
-}
-
-.tab-content.dark-mode .writing-preview,
-.tab-content.dark-mode .project-meta,
-.tab-content.dark-mode .writing-date,
-.tab-content.dark-mode .project-date {
-  color: var(--color-text-secondary);
-}
-
 /* Published Lately section */
 .latest-posts {
   display: grid;
@@ -1501,7 +1455,7 @@ footer {
 
 /* Print styles */
 @media print {
-  nav, .dark-mode-toggle, .modal, .lightbox {
+  nav, .modal, .lightbox {
     display: none !important;
   }
   
