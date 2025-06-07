@@ -63,9 +63,11 @@ const writingPieces = [
 
 const photos = [
   {
-    src: "placeholder-image.svg",
-    caption: "Late Night Crossing",
-    category: "street",
+title: "Camp"
+date: "22-05-2021"
+description: ""
+tags: ["camping", "nature", "night"]
+image_path: "/content/photography/camping.png"
   },
   {
     src: "placeholder-image.svg",
