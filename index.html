@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript">
-  // Close popup if it's being opened by Disqus in a popup window
-  if (window.opener != null && !window.opener.closed) {
-    window.close();
-  }
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Interlegere | To Read Between</title>
   <link rel="stylesheet" href="style.css">
-  
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZR553JLQM"></script>
   <script>
@@ -50,55 +43,43 @@
     <!-- Home -->
     <section id="home" class="tab-content active">
       <h2>Published Lately</h2>
-      <div class="latest-posts" id="latest-posts">
-        <!-- Latest posts will be injected here by JS -->
-      </div>
+      <div class="latest-posts" id="latest-posts"></div>
     </section>
 
     <!-- Writing -->
     <section id="writing" class="tab-content">
       <div class="section-header">
         <h2>I write to make sense of the world for myself</h2>
-      <div id="writing-list">
-        <!-- Writing pieces will be injected here by JS -->
       </div>
+      <div id="writing-list"></div>
     </section>
 
     <!-- Photography -->
     <section id="photography" class="tab-content">
       <h2>Just a curious onlooker, sometimes moved to capture</h2>
-      <div class="photo-grid" id="photo-grid">
-        <!-- Photos will be injected here by JS -->
-      </div>
+      <div class="photo-grid" id="photo-grid"></div>
     </section>
 
     <!-- Product Design -->
     <section id="product-design" class="tab-content">
       <h2>Fascinated with the design of everyday things - here I present my take on a few</h2>
-      <div class="design-list" id="design-list">
-        <!-- Product designs will be injected here by JS -->
-      </div>
+      <div class="design-list" id="design-list"></div>
     </section>
 
     <!-- Personal Projects -->
     <section id="personal-projects" class="tab-content">
       <div class="section-header">
         <h2>A space for the challenges I take on for myself</h2>
-      <div class="projects-list" id="projects-list">
-        <!-- Projects will be injected here by JS -->
       </div>
+      <div class="projects-list" id="projects-list"></div>
     </section>
 
     <!-- Tags -->
     <section id="tags" class="tab-content">
       <h2>Browse by Tag</h2>
       <div class="tag-container">
-        <div class="tag-list" id="tag-list">
-          <!-- Tags will be injected here by JS -->
-        </div>
-        <div class="tag-results" id="tag-results">
-          <!-- Tag results will be displayed here -->
-        </div>
+        <div class="tag-list" id="tag-list"></div>
+        <div class="tag-results" id="tag-results"></div>
       </div>
     </section>
 
@@ -119,7 +100,7 @@
   </main>
 
   <!-- Content Page Modal -->
-  <div id="content-modal" class="modal">
+  <div id="content-modal" class="modal" style="display:none;">
     <div class="modal-content">
       <div class="breadcrumb" id="breadcrumb"></div>
       <span class="close" onclick="closeModal()">&times;</span>
@@ -128,15 +109,11 @@
         <h3>Related Content</h3>
         <div id="related-list"></div>
       </div>
-      <div id="comments-section">
-        <h3>Comments</h3>
-        <div id="disqus_thread"></div>
-      </div>
     </div>
   </div>
 
   <!-- Photo Lightbox -->
-  <div id="photo-lightbox" class="lightbox">
+  <div id="photo-lightbox" class="lightbox" style="display:none;">
     <div class="lightbox-content">
       <span class="close" onclick="closeLightbox()">&times;</span>
       <div class="lightbox-nav">
@@ -159,21 +136,6 @@
   <footer>
     &copy; 2025 Nitya Garg. All rights reserved.
   </footer>
-
-  <!-- Disqus Script -->
-  <script>
-    var disqus_config = function () {
-      this.page.url = window.location.href;
-      this.page.identifier = window.location.pathname;
-    };
-    
-    function loadDisqus() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://interlegere.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  </script>
 
   <script src="script.js"></script>
 </body>
