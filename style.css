@@ -909,9 +909,9 @@ main {
 }
 
 .photo-item {
+  position: relative;
   cursor: pointer;
-  transition: transform var(--duration-normal) var(--ease-standard);
-  display: block;
+  margin-bottom: 1rem;
 }
 
 .photo-item:hover {
@@ -1143,26 +1143,42 @@ main {
 
 /* Modal styles */
 .modal {
-  display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--modal-bg);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .modal-content {
-  background-color: var(--color-background);
-  margin: 2% auto;
-  padding: var(--space-32);
-  border-radius: var(--radius-lg);
-  width: 90%;
   max-width: 800px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+.modal-breadcrumb {
+  background: var(--bg-alt);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+.modal-breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .breadcrumb {
