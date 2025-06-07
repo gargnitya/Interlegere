@@ -1,530 +1,577 @@
-// All content arrays with proper structure and upload dates
+// Sample data for demonstration - only showing real content, placeholders removed from display
+
+const latestPosts = [
+  {
+    category: "Photography",
+    title: "Camp",
+    dateTaken: "22-05-2021",
+    uploadDate: "08-06-2025",
+    preview: "A night of shared stories under the open sky",
+    id: "camp-photo",
+    type: "photography"
+  },
+  {
+    category: "Personal Projects",
+    title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
+    uploadDate: "07-06-2025",
+    preview: "My progress and thoughts from a month of swimming consistently.",
+    id: "swim-challenge",
+    type: "personal-projects"
+  }
+];
+
 const writingPieces = [
-  {
-    alpha: "A",
-    pieces: [
-      {
-        id: "abstraction-modern-life",
-        title: "Abstraction in Modern Life",
-        preview: "Exploring how abstract thought shapes our daily routines...",
-        full: "Full article text for 'Abstraction in Modern Life'. Here you can add images of handwritten notes, quotes, and more.",
-        uploadDate: "2025-05-31",
-        tags: ["philosophy", "modern life", "abstract thought"]
-      },
-    ],
-  },
-  {
-    alpha: "B",
-    pieces: [
-      {
-        id: "baking-meditation",
-        title: "Baking as Meditation",
-        preview: "How baking bread became my mindfulness practice.",
-        full: "Full article text for 'Baking as Meditation'. Add images or scanned notes here.",
-        uploadDate: "2025-05-15",
-        tags: ["meditation", "baking", "mindfulness"]
-      },
-    ],
-  },
+  // Placeholder structure kept for future content additions
+  // {
+  //   title: "Sample Writing Piece",
+  //   preview: "Preview text...",
+  //   full: "Full content...",
+  //   uploadDate: "08-06-2025",
+  //   tags: ["tag1", "tag2"]
+  // }
 ];
 
 const photos = [
   {
-    id: "camp-night",
     src: "content/photography/camping.png",
     title: "Camp",
-    dateTaken: "2021-05-22", // Date when photo was actually taken
-    uploadDate: "2025-06-08", // Date when uploaded to website
+    dateTaken: "22-05-2021",
+    uploadDate: "08-06-2025",
     description: "A night of shared stories under the open sky",
-    tags: ["camping", "night", "nature", "gratitude"]
-  },
-  {
-    id: "placeholder-sunlit",
-    src: "placeholder-image.svg",
-    title: "Sunlit Smile",
-    dateTaken: "2024-12-15",
-    uploadDate: "2025-01-10",
-    description: "Captured a moment of pure joy in golden hour light",
-    tags: ["portraits", "golden hour", "happiness"]
-  },
-  {
-    id: "placeholder-urban",
-    src: "placeholder-image.svg",
-    title: "Urban Abstract",
-    dateTaken: "2024-11-20",
-    uploadDate: "2025-01-05",
-    description: "Geometric patterns found in city architecture",
-    tags: ["abstract", "urban", "architecture"]
-  },
-  {
-    id: "placeholder-forest",
-    src: "placeholder-image.svg",
-    title: "Forest Haze",
-    dateTaken: "2024-10-10",
-    uploadDate: "2024-12-28",
-    description: "Morning mist dancing through the trees",
-    tags: ["nature", "mist", "trees", "morning"]
-  },
-  {
-    id: "placeholder-city",
-    src: "placeholder-image.svg",
-    title: "City Colors",
-    dateTaken: "2024-09-05",
-    uploadDate: "2024-12-20",
-    description: "Vibrant street art reflecting urban energy",
-    tags: ["street", "colors", "urban", "art"]
-  },
+    tags: ["camping", "night", "nature", "gratitude"],
+    id: "camp-photo"
+  }
+  // Placeholder photos removed from display
 ];
 
 const designs = [
-  {
-    id: "minimalist-lamp",
-    title: "Minimalist Desk Lamp",
-    meta: "2025 • Tools: Figma, Blender",
-    description: "A case study on designing a lamp for small spaces. Includes sketches, prototypes, and final renders.",
-    uploadDate: "2025-05-22",
-    tags: ["product design", "minimalism", "lighting"]
-  },
+  // Placeholder structure kept for future content additions
+  // {
+  //   title: "Design Project",
+  //   meta: "2025 • Tools: Figma",
+  //   desc: "Description...",
+  //   uploadDate: "08-06-2025",
+  //   tags: ["design", "product"]
+  // }
 ];
 
 const projects = [
   {
-    id: "swimming-challenge",
     title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
-    description: "My progress and thoughts from a month of swimming consistently.",
     meta: "Skill: Controlled breathing, coordination, endurance • 1/30 Days Complete",
+    description: "My progress and thoughts from a month of swimming consistently. This challenge focuses on improving my swimming technique while building endurance through daily practice.",
     progress: 3.33,
-    uploadDate: "2025-06-07",
-    tags: ["swimming", "challenge", "fitness", "endurance"]
-  },
-  {
-    id: "coding-bootcamp",
-    title: "100-Hour Coding Bootcamp",
-    description: "Learning web development through intensive practice and projects.",
-    meta: "Skill: Coding • 40/100 Hours Complete",
-    progress: 40,
-    uploadDate: "2025-04-15",
-    tags: ["coding", "learning", "web development"]
-  },
+    uploadDate: "07-06-2025",
+    tags: ["swimming", "endurance", "challenge"],
+    id: "swim-challenge"
+  }
+  // Placeholder projects removed from display
 ];
 
-// Function to collect all content with upload dates for "Published Lately"
+// Current photo index for lightbox navigation
+let currentPhotoIndex = 0;
+let currentVisiblePhotos = [];
+
+// Dark mode state
+let darkModeStates = {
+  'writing': false,
+  'personal-projects': false
+};
+
+// Auto-collect all content for "Published Lately"
 function getAllContent() {
-  let allContent = [];
-  
-  // Add writing pieces
-  writingPieces.forEach(group => {
-    group.pieces.forEach(piece => {
-      allContent.push({
-        id: piece.id,
-        type: "Writing",
-        title: piece.title,
-        preview: piece.preview,
-        uploadDate: piece.uploadDate,
-        content: piece
-      });
-    });
-  });
+  const allContent = [];
   
   // Add photos
   photos.forEach(photo => {
-    allContent.push({
-      id: photo.id,
-      type: "Photography",
-      title: photo.title,
-      preview: photo.description,
-      uploadDate: photo.uploadDate,
-      content: photo
-    });
+    if (photo.uploadDate) {
+      allContent.push({
+        category: "Photography",
+        title: photo.title,
+        uploadDate: photo.uploadDate,
+        preview: photo.description,
+        id: photo.id,
+        type: "photography"
+      });
+    }
+  });
+  
+  // Add writing pieces
+  writingPieces.forEach(piece => {
+    if (piece.uploadDate) {
+      allContent.push({
+        category: "Writing",
+        title: piece.title,
+        uploadDate: piece.uploadDate,
+        preview: piece.preview,
+        id: piece.title.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+        type: "writing"
+      });
+    }
   });
   
   // Add designs
   designs.forEach(design => {
-    allContent.push({
-      id: design.id,
-      type: "Product Design",
-      title: design.title,
-      preview: design.description,
-      uploadDate: design.uploadDate,
-      content: design
-    });
+    if (design.uploadDate) {
+      allContent.push({
+        category: "Product Design",
+        title: design.title,
+        uploadDate: design.uploadDate,
+        preview: design.desc,
+        id: design.title.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+        type: "product-design"
+      });
+    }
   });
   
   // Add projects
   projects.forEach(project => {
-    allContent.push({
-      id: project.id,
-      type: "Personal Projects",
-      title: project.title,
-      preview: project.description,
-      uploadDate: project.uploadDate,
-      content: project
-    });
+    if (project.uploadDate) {
+      allContent.push({
+        category: "Personal Projects",
+        title: project.title,
+        uploadDate: project.uploadDate,
+        preview: project.description || project.meta,
+        id: project.id,
+        type: "personal-projects"
+      });
+    }
   });
   
-  // Sort by upload date (most recent first) and return latest 6
-  return allContent.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)).slice(0, 6);
+  // Sort by upload date (most recent first) and return top 6
+  return allContent.sort((a, b) => new Date(b.uploadDate.split('-').reverse().join('-')) - new Date(a.uploadDate.split('-').reverse().join('-'))).slice(0, 6);
 }
 
-// Wait for DOM to be fully loaded before running scripts
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // Tab navigation with error handling
-  const tabs = document.querySelectorAll('.tab');
-  const tabContents = document.querySelectorAll('.tab-content');
-  
-  if (tabs.length > 0) {
-    tabs.forEach(tab => {
-      tab.onclick = function() {
-        // Remove active class from all tabs and content
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-        
-        // Add active class to clicked tab and corresponding content
-        tab.classList.add('active');
-        const targetContent = document.getElementById(tab.dataset.tab);
-        if (targetContent) {
-          targetContent.classList.add('active');
-        }
-      };
-    });
-  }
+// Format date to DD-MM-YYYY
+function formatDate(dateString) {
+  if (!dateString) return '';
+  return dateString; // Already in DD-MM-YYYY format
+}
 
-  // Initialize all content rendering
+// Tab navigation
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize tab navigation
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.onclick = function() {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    };
+  });
+
+  // Initial render
   renderLatest();
   renderWriting();
   renderPhotos();
   renderDesigns();
   renderProjects();
-  
-  // Setup modal functionality
-  setupModals();
+  renderTags();
 });
 
 // Home - Published Lately (Auto-updating)
 function renderLatest() {
   const latestDiv = document.getElementById('latest-posts');
-  if (!latestDiv) {
-    console.error('Element with id "latest-posts" not found');
-    return;
-  }
+  if (!latestDiv) return;
   
-  const latestContent = getAllContent();
+  const content = getAllContent();
   latestDiv.innerHTML = '';
   
-  latestContent.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'latest-card clickable';
-    card.dataset.type = item.type;
-    card.dataset.id = item.id;
-    
-    card.innerHTML = `
-      <div class="category">${item.type}</div>
-      <div class="title">${item.title}</div>
-      <div class="date">Uploaded: ${item.uploadDate}</div>
-      <div class="preview">${item.preview}</div>
+  content.forEach(post => {
+    latestDiv.innerHTML += `
+      <div class="latest-card" onclick="openContentPage('${post.type}', '${post.id}')">
+        <div class="category">${post.category}</div>
+        <div class="title">${post.title}</div>
+        <div class="date">Published on ${formatDate(post.uploadDate)}</div>
+        <div class="preview">${post.preview}</div>
+      </div>
     `;
-    
-    // Make card clickable
-    card.onclick = () => openContentDetail(item.type, item.id);
-    latestDiv.appendChild(card);
   });
 }
 
-// Writing - Alphabetical with clickable functionality
+// Writing - Sorted by date
 function renderWriting() {
   const writingDiv = document.getElementById('writing-list');
-  if (!writingDiv) {
-    console.error('Element with id "writing-list" not found');
-    return;
-  }
+  if (!writingDiv) return;
   
   writingDiv.innerHTML = '';
-  writingPieces.forEach(group => {
-    const alphaDiv = document.createElement('div');
-    alphaDiv.className = 'writing-alpha';
-    alphaDiv.textContent = group.alpha;
-    writingDiv.appendChild(alphaDiv);
-    
-    group.pieces.forEach((piece, idx) => {
-      const pieceDiv = document.createElement('div');
-      pieceDiv.className = 'writing-piece clickable';
-      pieceDiv.dataset.alpha = group.alpha;
-      pieceDiv.dataset.idx = idx;
-      pieceDiv.dataset.id = piece.id;
-      
-      pieceDiv.innerHTML = `
+  
+  // Sort writing pieces by upload date
+  const sortedWriting = [...writingPieces].sort((a, b) => 
+    new Date(b.uploadDate.split('-').reverse().join('-')) - new Date(a.uploadDate.split('-').reverse().join('-'))
+  );
+  
+  sortedWriting.forEach((piece, idx) => {
+    const pieceId = piece.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    writingDiv.innerHTML += `
+      <div class="writing-piece" onclick="openContentPage('writing', '${pieceId}')">
         <div class="writing-title">${piece.title}</div>
         <div class="writing-preview">${piece.preview}</div>
-        <div class="writing-full" style="display: none;">${piece.full}</div>
-      `;
-      
-      // Make piece clickable to expand
-      pieceDiv.onclick = function() {
-        const fullDiv = pieceDiv.querySelector('.writing-full');
-        const isOpen = fullDiv.style.display === 'block';
-        
-        if (isOpen) {
-          fullDiv.style.display = 'none';
-          pieceDiv.classList.remove('open');
-        } else {
-          fullDiv.style.display = 'block';
-          pieceDiv.classList.add('open');
-        }
-      };
-      
-      writingDiv.appendChild(pieceDiv);
-    });
+        <div class="writing-date">Published on ${formatDate(piece.uploadDate)}</div>
+      </div>
+    `;
   });
 }
 
-// Photography - Chaotic Grid with full image display and lightbox
+// Photography - Chaotic Grid with Lightbox
 function renderPhotos() {
   const grid = document.getElementById('photo-grid');
-  if (!grid) {
-    console.error('Element with id "photo-grid" not found');
-    return;
-  }
+  if (!grid) return;
   
   grid.innerHTML = '';
+  currentVisiblePhotos = [...photos];
   
-  photos.forEach(photo => {
-    const photoDiv = document.createElement('div');
-    photoDiv.className = 'photo-item';
-    photoDiv.dataset.id = photo.id;
-    
-    // Create image element with error handling
-    const img = document.createElement('img');
-    img.src = photo.src;
-    img.alt = photo.title;
-    img.loading = 'lazy';
-    img.onerror = function() {
-      this.src = 'placeholder-image.svg';
-    };
-    
-    // Add click handler for lightbox
-    img.onclick = () => openPhotoLightbox(photo);
-    
-    const caption = document.createElement('div');
-    caption.className = 'photo-caption';
-    caption.textContent = photo.title;
-    
-    photoDiv.appendChild(img);
-    photoDiv.appendChild(caption);
-    grid.appendChild(photoDiv);
+  photos.forEach((photo, index) => {
+    const randomHeight = Math.floor(Math.random() * 3) + 1; // Random height for chaos
+    grid.innerHTML += `
+      <div class="photo-item" onclick="openLightbox(${index})" style="grid-row-end: span ${randomHeight}">
+        <div class="photo-container">
+          <img src="${photo.src}" alt="${photo.title}" onerror="this.src='placeholder-image.svg'">
+          <div class="photo-overlay">
+            <div class="photo-title">${photo.title}</div>
+          </div>
+        </div>
+      </div>
+    `;
   });
 }
 
 // Product Design
 function renderDesigns() {
   const list = document.getElementById('design-list');
-  if (!list) {
-    console.error('Element with id "design-list" not found');
-    return;
-  }
+  if (!list) return;
   
   list.innerHTML = '';
   designs.forEach(design => {
-    const card = document.createElement('div');
-    card.className = 'design-card clickable';
-    card.dataset.id = design.id;
-    
-    card.innerHTML = `
-      <div class="design-title">${design.title}</div>
-      <div class="design-meta">${design.meta}</div>
-      <div class="design-desc">${design.description}</div>
+    const designId = design.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    list.innerHTML += `
+      <div class="design-card" onclick="openContentPage('product-design', '${designId}')">
+        <div class="design-title">${design.title}</div>
+        <div class="design-meta">${design.meta}</div>
+        <div class="design-desc">${design.desc}</div>
+        <div class="design-date">Published on ${formatDate(design.uploadDate)}</div>
+      </div>
     `;
-    
-    // Make card clickable
-    card.onclick = () => openContentDetail('Product Design', design.id);
-    list.appendChild(card);
   });
 }
 
-// Personal Projects (removed public/private toggle)
+// Personal Projects
 function renderProjects() {
   const list = document.getElementById('projects-list');
-  if (!list) {
-    console.error('Element with id "projects-list" not found');
+  if (!list) return;
+  
+  list.innerHTML = '';
+  projects.forEach(proj => {
+    list.innerHTML += `
+      <div class="project-card" onclick="openContentPage('personal-projects', '${proj.id}')">
+        <div class="project-title">${proj.title}</div>
+        <div class="project-meta">${proj.meta}</div>
+        <div class="project-progress">
+          <div class="project-progress-bar" style="width:${proj.progress}%"></div>
+        </div>
+        <div class="project-date">Published on ${formatDate(proj.uploadDate)}</div>
+      </div>
+    `;
+  });
+}
+
+// Tags functionality
+function collectAllTags() {
+  const tagMap = {};
+  
+  // Collect from photos
+  photos.forEach(photo => {
+    if (photo.tags) {
+      photo.tags.forEach(tag => {
+        if (!tagMap[tag]) tagMap[tag] = [];
+        tagMap[tag].push({
+          title: photo.title,
+          category: "Photography",
+          type: "photography",
+          id: photo.id
+        });
+      });
+    }
+  });
+  
+  // Collect from writing
+  writingPieces.forEach(piece => {
+    if (piece.tags) {
+      piece.tags.forEach(tag => {
+        if (!tagMap[tag]) tagMap[tag] = [];
+        tagMap[tag].push({
+          title: piece.title,
+          category: "Writing",
+          type: "writing",
+          id: piece.title.toLowerCase().replace(/[^a-z0-9]/g, '-')
+        });
+      });
+    }
+  });
+  
+  // Collect from designs
+  designs.forEach(design => {
+    if (design.tags) {
+      design.tags.forEach(tag => {
+        if (!tagMap[tag]) tagMap[tag] = [];
+        tagMap[tag].push({
+          title: design.title,
+          category: "Product Design",
+          type: "product-design",
+          id: design.title.toLowerCase().replace(/[^a-z0-9]/g, '-')
+        });
+      });
+    }
+  });
+  
+  // Collect from projects
+  projects.forEach(project => {
+    if (project.tags) {
+      project.tags.forEach(tag => {
+        if (!tagMap[tag]) tagMap[tag] = [];
+        tagMap[tag].push({
+          title: project.title,
+          category: "Personal Projects",
+          type: "personal-projects",
+          id: project.id
+        });
+      });
+    }
+  });
+  
+  return tagMap;
+}
+
+function renderTags() {
+  const tagList = document.getElementById('tag-list');
+  if (!tagList) return;
+  
+  const allTags = collectAllTags();
+  tagList.innerHTML = '';
+  
+  Object.keys(allTags).sort().forEach(tag => {
+    tagList.innerHTML += `
+      <span class="tag-item" onclick="showTagResults('${tag}')">#${tag}</span>
+    `;
+  });
+}
+
+function showTagResults(selectedTag) {
+  const resultsDiv = document.getElementById('tag-results');
+  const allTags = collectAllTags();
+  const taggedItems = allTags[selectedTag] || [];
+  
+  resultsDiv.innerHTML = `<h3>Content tagged with #${selectedTag}</h3>`;
+  
+  if (taggedItems.length === 0) {
+    resultsDiv.innerHTML += '<p>No content found with this tag.</p>';
     return;
   }
   
-  list.innerHTML = '';
-  projects.forEach((proj, idx) => {
-    const card = document.createElement('div');
-    card.className = 'project-card clickable';
-    card.dataset.id = proj.id;
-    
-    card.innerHTML = `
-      <div class="project-title">${proj.title}</div>
-      <div class="project-meta">${proj.meta}</div>
-      <div class="project-progress">
-        <div class="project-progress-bar" style="width:${proj.progress}%"></div>
+  const resultsList = document.createElement('div');
+  resultsList.className = 'tag-results-list';
+  
+  taggedItems.forEach(item => {
+    resultsList.innerHTML += `
+      <div class="tag-result-item" onclick="openContentPage('${item.type}', '${item.id}')">
+        ${item.title} | ${item.category}
       </div>
     `;
-    
-    // Make card clickable
-    card.onclick = () => openContentDetail('Personal Projects', proj.id);
-    list.appendChild(card);
   });
+  
+  resultsDiv.appendChild(resultsList);
 }
 
-// Photo lightbox functionality
-function openPhotoLightbox(photo) {
-  const lightbox = document.getElementById('photo-lightbox');
-  const lightboxImage = document.getElementById('lightbox-image');
-  const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxDateTaken = document.getElementById('lightbox-date-taken');
-  const lightboxDescription = document.getElementById('lightbox-description');
-  const lightboxTags = document.getElementById('lightbox-tags');
-  
-  if (lightbox && lightboxImage) {
-    lightboxImage.src = photo.src;
-    lightboxImage.alt = photo.title;
-    lightboxTitle.textContent = photo.title;
-    lightboxDateTaken.textContent = `Taken: ${photo.dateTaken}`;
-    lightboxDescription.textContent = photo.description;
-    
-    // Display tags
-    lightboxTags.innerHTML = '';
-    if (photo.tags && photo.tags.length > 0) {
-      photo.tags.forEach(tag => {
-        const tagSpan = document.createElement('span');
-        tagSpan.className = 'tag';
-        tagSpan.textContent = `#${tag}`;
-        lightboxTags.appendChild(tagSpan);
-      });
-    }
-    
-    lightbox.style.display = 'flex';
-  }
-}
-
-// Content detail modal functionality
-function openContentDetail(type, id) {
-  let content = null;
-  
-  // Find content based on type and id
-  switch (type) {
-    case 'Writing':
-      writingPieces.forEach(group => {
-        const piece = group.pieces.find(p => p.id === id);
-        if (piece) content = piece;
-      });
-      break;
-    case 'Photography':
-      content = photos.find(p => p.id === id);
-      break;
-    case 'Product Design':
-      content = designs.find(d => d.id === id);
-      break;
-    case 'Personal Projects':
-      content = projects.find(p => p.id === id);
-      break;
-  }
-  
-  if (content) {
-    const modal = document.getElementById('content-modal');
-    const modalBody = document.getElementById('modal-body');
-    
-    if (modal && modalBody) {
-      // Generate modal content based on type
-      let modalContent = '';
-      
-      if (type === 'Writing') {
-        modalContent = `
-          <h2>${content.title}</h2>
-          <p><strong>Upload Date:</strong> ${content.uploadDate}</p>
-          <div class="tags">
-            ${content.tags ? content.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
-          </div>
-          <div class="content-body">${content.full}</div>
-        `;
-      } else if (type === 'Photography') {
-        modalContent = `
-          <h2>${content.title}</h2>
-          <img src="${content.src}" alt="${content.title}" style="max-width: 100%; height: auto;">
-          <p><strong>Date Taken:</strong> ${content.dateTaken}</p>
-          <p><strong>Upload Date:</strong> ${content.uploadDate}</p>
-          <p>${content.description}</p>
-          <div class="tags">
-            ${content.tags ? content.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
-          </div>
-        `;
-      } else if (type === 'Product Design') {
-        modalContent = `
-          <h2>${content.title}</h2>
-          <p><strong>Details:</strong> ${content.meta}</p>
-          <p><strong>Upload Date:</strong> ${content.uploadDate}</p>
-          <div class="tags">
-            ${content.tags ? content.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
-          </div>
-          <div class="content-body">${content.description}</div>
-        `;
-      } else if (type === 'Personal Projects') {
-        modalContent = `
-          <h2>${content.title}</h2>
-          <p><strong>Details:</strong> ${content.meta}</p>
-          <p><strong>Upload Date:</strong> ${content.uploadDate}</p>
-          <div class="progress-bar-container">
-            <div class="progress-bar" style="width: ${content.progress}%"></div>
-          </div>
-          <div class="tags">
-            ${content.tags ? content.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
-          </div>
-          <div class="content-body">${content.description}</div>
-        `;
-      }
-      
-      modalBody.innerHTML = modalContent;
-      modal.style.display = 'flex';
-    }
-  }
-}
-
-// Setup modal close functionality
-function setupModals() {
-  // Photo lightbox close
-  const lightboxClose = document.querySelector('#photo-lightbox .close-btn');
-  const lightbox = document.getElementById('photo-lightbox');
-  
-  if (lightboxClose && lightbox) {
-    lightboxClose.onclick = () => {
-      lightbox.style.display = 'none';
-    };
-    
-    lightbox.onclick = (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-      }
-    };
-  }
-  
-  // Content modal close
-  const modalClose = document.querySelector('#content-modal .close-modal');
+// Modal functionality for content pages
+function openContentPage(contentType, contentId) {
   const modal = document.getElementById('content-modal');
+  const modalBody = document.getElementById('modal-body');
+  const breadcrumb = document.getElementById('breadcrumb');
+  const relatedList = document.getElementById('related-list');
   
-  if (modalClose && modal) {
-    modalClose.onclick = () => {
-      modal.style.display = 'none';
-    };
-    
-    modal.onclick = (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    };
+  let content = null;
+  let sectionName = '';
+  
+  // Find the content based on type and ID
+  switch(contentType) {
+    case 'photography':
+      content = photos.find(p => p.id === contentId);
+      sectionName = 'Photography';
+      break;
+    case 'writing':
+      content = writingPieces.find(p => p.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === contentId);
+      sectionName = 'Writing';
+      break;
+    case 'product-design':
+      content = designs.find(d => d.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === contentId);
+      sectionName = 'Product Design';
+      break;
+    case 'personal-projects':
+      content = projects.find(p => p.id === contentId);
+      sectionName = 'Personal Projects';
+      break;
   }
   
-  // Close modals with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (lightbox && lightbox.style.display === 'flex') {
-        lightbox.style.display = 'none';
-      }
-      if (modal && modal.style.display === 'flex') {
-        modal.style.display = 'none';
-      }
+  if (!content) return;
+  
+  // Set breadcrumb
+  breadcrumb.innerHTML = `<a href="#" onclick="closeModal()">Home</a> > <a href="#" onclick="closeModal(); document.querySelector('[data-tab=${contentType}]').click()">${sectionName}</a> > ${content.title}`;
+  
+  // Set content based on type
+  if (contentType === 'photography') {
+    modalBody.innerHTML = `
+      <h1>${content.title}</h1>
+      <img src="${content.src}" alt="${content.title}" class="modal-image">
+      <p><strong>Taken:</strong> ${content.dateTaken}</p>
+      <p><strong>Published:</strong> ${formatDate(content.uploadDate)}</p>
+      <p>${content.description}</p>
+      <div class="modal-tags">
+        ${content.tags ? content.tags.map(tag => `<span class="tag" onclick="showTagResults('${tag}')">#${tag}</span>`).join(' ') : ''}
+      </div>
+    `;
+  } else if (contentType === 'writing') {
+    modalBody.innerHTML = `
+      <h1>${content.title}</h1>
+      <p><strong>Published:</strong> ${formatDate(content.uploadDate)}</p>
+      <div class="writing-content">${content.full}</div>
+      <div class="modal-tags">
+        ${content.tags ? content.tags.map(tag => `<span class="tag" onclick="showTagResults('${tag}')">#${tag}</span>`).join(' ') : ''}
+      </div>
+    `;
+  } else if (contentType === 'personal-projects') {
+    modalBody.innerHTML = `
+      <h1>${content.title}</h1>
+      <p><strong>Published:</strong> ${formatDate(content.uploadDate)}</p>
+      <div class="project-details">
+        <p>${content.meta}</p>
+        <div class="project-progress">
+          <div class="project-progress-bar" style="width:${content.progress}%"></div>
+        </div>
+        <p>${content.description}</p>
+      </div>
+      <div class="modal-tags">
+        ${content.tags ? content.tags.map(tag => `<span class="tag" onclick="showTagResults('${tag}')">#${tag}</span>`).join(' ') : ''}
+      </div>
+    `;
+  } else if (contentType === 'product-design') {
+    modalBody.innerHTML = `
+      <h1>${content.title}</h1>
+      <p><strong>Published:</strong> ${formatDate(content.uploadDate)}</p>
+      <p>${content.meta}</p>
+      <div class="design-content">${content.desc}</div>
+      <div class="modal-tags">
+        ${content.tags ? content.tags.map(tag => `<span class="tag" onclick="showTagResults('${tag}')">#${tag}</span>`).join(' ') : ''}
+      </div>
+    `;
+  }
+  
+  // Show related content
+  showRelatedContent(content, relatedList);
+  
+  // Show modal
+  modal.style.display = 'block';
+  
+  // Load Disqus comments
+  loadDisqus();
+}
+
+function showRelatedContent(currentContent, container) {
+  if (!currentContent.tags) {
+    container.innerHTML = '<p>No related content found.</p>';
+    return;
+  }
+  
+  const allTags = collectAllTags();
+  const relatedItems = [];
+  
+  currentContent.tags.forEach(tag => {
+    if (allTags[tag]) {
+      allTags[tag].forEach(item => {
+        if (item.id !== currentContent.id) {
+          relatedItems.push(item);
+        }
+      });
     }
   });
+  
+  // Remove duplicates
+  const uniqueRelated = relatedItems.filter((item, index, self) => 
+    index === self.findIndex(i => i.id === item.id)
+  );
+  
+  if (uniqueRelated.length === 0) {
+    container.innerHTML = '<p>No related content found.</p>';
+    return;
+  }
+  
+  container.innerHTML = uniqueRelated.map(item => 
+    `<div class="related-item" onclick="openContentPage('${item.type}', '${item.id}')">${item.title} | ${item.category}</div>`
+  ).join('');
+}
+
+function closeModal() {
+  document.getElementById('content-modal').style.display = 'none';
+}
+
+// Lightbox functionality for photos
+function openLightbox(photoIndex) {
+  currentPhotoIndex = photoIndex;
+  const lightbox = document.getElementById('photo-lightbox');
+  updateLightboxContent();
+  lightbox.style.display = 'block';
+}
+
+function updateLightboxContent() {
+  const photo = currentVisiblePhotos[currentPhotoIndex];
+  document.getElementById('lightbox-image').src = photo.src;
+  document.getElementById('lightbox-title').textContent = photo.title;
+  document.getElementById('lightbox-date-taken').textContent = `Taken: ${photo.dateTaken}`;
+  document.getElementById('lightbox-date-uploaded').textContent = `Published: ${formatDate(photo.uploadDate)}`;
+  document.getElementById('lightbox-description').textContent = photo.description;
+  
+  const tagsContainer = document.getElementById('lightbox-tags');
+  if (photo.tags) {
+    tagsContainer.innerHTML = photo.tags.map(tag => 
+      `<span class="tag" onclick="showTagResults('${tag}')">#${tag}</span>`
+    ).join(' ');
+  }
+}
+
+function previousPhoto() {
+  currentPhotoIndex = (currentPhotoIndex - 1 + currentVisiblePhotos.length) % currentVisiblePhotos.length;
+  updateLightboxContent();
+}
+
+function nextPhoto() {
+  currentPhotoIndex = (currentPhotoIndex + 1) % currentVisiblePhotos.length;
+  updateLightboxContent();
+}
+
+function closeLightbox() {
+  document.getElementById('photo-lightbox').style.display = 'none';
+}
+
+// Dark mode functionality
+function toggleDarkMode(section) {
+  const sectionElement = document.getElementById(section);
+  darkModeStates[section] = !darkModeStates[section];
+  
+  if (darkModeStates[section]) {
+    sectionElement.classList.add('dark-mode');
+  } else {
+    sectionElement.classList.remove('dark-mode');
+  }
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('content-modal');
+  const lightbox = document.getElementById('photo-lightbox');
+  
+  if (event.target === modal) {
+    closeModal();
+  }
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
 }
