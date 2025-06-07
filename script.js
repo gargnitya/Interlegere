@@ -6,6 +6,7 @@ const photos = [
     title: "Camp",
     dateTaken: "22-05-2021",
     uploadDate: "08-06-2025",
+device: "iPhone 11 Pro in Night Mode"
     description: "A night of shared stories under the open sky",
     tags: ["camping", "night", "nature"],
     id: "camp-photo"
@@ -15,6 +16,7 @@ const photos = [
     title: "Holi",
     dateTaken: "08-03-2023",
     uploadDate: "08-06-2025",
+device: "iPhone 13 Pro"
     description: "Do colours on the outside mask our inner demons?",
     tags: ["festival", "colours"],
     id: "holi-photo"
