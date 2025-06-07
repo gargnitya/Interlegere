@@ -20,9 +20,9 @@ const latestPosts = [
   },
   {
     category: "Personal Projects",
-    title: "30-Day Sketch Challenge",
-    date: "2025-05-18",
-    preview: "My progress and thoughts from a month of daily sketching.",
+    title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
+    date: "2025-06-07",
+    preview: "My progress and thoughts from a month of swimming consistently.",
   },
   {
     category: "Writing",
