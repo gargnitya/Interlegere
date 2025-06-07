@@ -131,6 +131,14 @@ function renderLatest() {
   const content = getAllContent();
   latestDiv.innerHTML = '';
   content.forEach(post => {
+let imagePreview = '';
+    if (post.category === "Photography") {
+      // Find the actual photo object for the src
+      const photoObj = photos.find(p => p.id === post.id);
+      if (photoObj) {
+        imagePreview = `<img class="latest-photo-preview" src="${photoObj.src}" alt="${photoObj.title}" />`;
+      }
+    }
     latestDiv.innerHTML += `
       <div class="latest-card" onclick="openContentPage('${post.type}', '${post.id}')">
         <div class="category">${post.category}</div>
