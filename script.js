@@ -436,6 +436,7 @@ function updateLightboxContent() {
   document.getElementById('lightbox-title').textContent = photo.title;
   document.getElementById('lightbox-date-taken').textContent = `Taken: ${photo.dateTaken}`;
   document.getElementById('lightbox-date-uploaded').textContent = `Published: ${formatDate(photo.uploadDate)}`;
+document.getElementById('lightbox-device').textContent = photo.device ? `Device: ${photo.device}` : '';
   document.getElementById('lightbox-description').textContent = photo.description;
   const tagsContainer = document.getElementById('lightbox-tags');
   if (photo.tags) {
