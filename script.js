@@ -25,10 +25,11 @@ device: "iPhone 13 Pro",
 
 const writingPieces = [
   {
-    title: "My note to self after completing undergraduation",
+    title: "A note to self after completing undergraduation",
     preview: "Will my 21-year old self be proud of who I have become?",
     full: `
       <div class="writing-meta">
+<div><em>Enroute Yosemite</em></div> 
         <div><strong>Date:</strong> 21.05.21</div>
         <div><strong>Time:</strong> 6:54 PDT</div>
       </div>
