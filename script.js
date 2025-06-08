@@ -48,6 +48,10 @@ const writingPieces = [
       <p>
         I can hardly wait. I am ready to grow.
       </p>
+  <div style="margin-top:2rem;">
+    <img src="content/writing/yosemite.jpg" alt="Handwritten note: Enroute Yosemite" style="max-width:100%;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
+    <div style="font-size:0.9em;color:#888;margin-top:0.5rem;">My handwritten journal entry</div>
+  </div>
     `,
     uploadDate: "09-06-2025",
     tags: ["reflection", "camping", "road-trip"]
