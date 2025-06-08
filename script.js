@@ -58,8 +58,6 @@ const writingPieces = [
   }
 ];
 
-];
-
 const designs = [
   // Add your design projects here when ready
 ];
