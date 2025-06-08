@@ -29,25 +29,25 @@ const writingPieces = [
     preview: "Will my 21-year old self be proud of who I have become?",
     full: `
       <div class="writing-meta">
+<div class="subtitle" style="font-size:1.1em;color:#888;margin-bottom:0.5em;"><em>Will my 21-year old self be proud of who I have become?</em></div>
+</div>
+<p>
+introductory paragraph
+</p>
+ <blockquote style="font-style:italic; border-left: 4px solid #FF6700; margin: 1.5em 0; padding-left: 1em;">
 <div><em>Enroute Yosemite</em></div> 
         <div><strong>Date:</strong> 21.05.21</div>
         <div><strong>Time:</strong> 6:54 PDT</div>
-      </div>
-      <p>
-        I believe that the momentum of change is fueled by the openness of the mind and heart and the willingness to accept that the innumerous avenues of life await the arrival of self-exploration.
-      </p>
-      <p>
-        Amidst the independence of adult life and becoming increasingly responsible about the choices I make, my time in Yosemite and Lupine campground will constantly remind me of how inherently dependent human life is on air, water, good, sunlight and the dawn.
-      </p>
-      <p>
-        I hope this experience solidifies my belief that the value of life is in the journeys we take, the relationships we share and the knowledge we gain and impart - and not in material possessions. When we surrender to death, all we take with us is our soul and we leave behind everything else.
-      </p>
-      <p>
-        At the end of this, I hope that my heart sings more and that my mind thinks deeper. I hope that I become more giving to the people in my life and to nature itself.
-      </p>
-      <p>
+      <br>
+        I believe that the momentum of change is fueled by the openness of the mind and heart and the willingness to accept that the innumerous avenues of life await the arrival of self-exploration. <br><br>
+        Amidst the independence of adult life and becoming increasingly responsible about the choices I make, my time in Yosemite and Lupine campground will constantly remind me of how inherently dependent human life is on air, water, good, sunlight and the dawn. <br><br>
+        I hope this experience solidifies my belief that the value of life is in the journeys we take, the relationships we share and the knowledge we gain and impart - and not in material possessions. When we surrender to death, all we take with us is our soul and we leave behind everything else. <br><br>
+        At the end of this, I hope that my heart sings more and that my mind thinks deeper. I hope that I become more giving to the people in my life and to nature itself. <br><br>
         I can hardly wait. I am ready to grow.
-      </p>
+</blockquote>
+      <p>
+      reflection section
+</p>
   <div style="margin-top:2rem;">
     <img src="content/writing/yosemite.jpg" alt="Handwritten note: Enroute Yosemite" style="max-width:100%;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.1);" />
     <div style="font-size:0.9em;color:#888;margin-top:0.5rem;">My handwritten journal entry</div>
