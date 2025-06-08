@@ -24,7 +24,35 @@ device: "iPhone 13 Pro",
 ];
 
 const writingPieces = [
-  // Add your writing pieces here when ready
+  {
+    title: "My note to self after completing undergraduation",
+    preview: "Will my 21-year old self be proud of who I have become?",
+    full: `
+      <div class="writing-meta">
+        <div><strong>Date:</strong> 21.05.21</div>
+        <div><strong>Time:</strong> 6:54 PDT</div>
+      </div>
+      <p>
+        I believe that the momentum of change is fueled by the openness of the mind and heart and the willingness to accept that the innumerous avenues of life await the arrival of self-exploration.
+      </p>
+      <p>
+        Amidst the independence of adult life and becoming increasingly responsible about the choices I make, my time in Yosemite and Lupine campground will constantly remind me of how inherently dependent human life is on air, water, good, sunlight and the dawn.
+      </p>
+      <p>
+        I hope this experience solidifies my belief that the value of life is in the journeys we take, the relationships we share and the knowledge we gain and impart - and not in material possessions. When we surrender to death, all we take with us is our soul and we leave behind everything else.
+      </p>
+      <p>
+        At the end of this, I hope that my heart sings more and that my mind thinks deeper. I hope that I become more giving to the people in my life and to nature itself.
+      </p>
+      <p>
+        I can hardly wait. I am ready to grow.
+      </p>
+    `,
+    uploadDate: "09-06-2025",
+    tags: ["reflection", "camping", "road-trip"]
+  }
+];
+
 ];
 
 const designs = [
