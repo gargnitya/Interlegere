@@ -11,6 +11,7 @@ device: "iPhone 11 Pro in Night Mode",
     tags: ["camping", "night", "nature"],
     id: "camp-photo"
   },
+
   {
     src: "content/photography/holi.png",
     title: "Holi",
@@ -20,7 +21,19 @@ device: "iPhone 13 Pro",
     description: "Do colours on the outside mask our inner demons?",
     tags: ["festival", "colours"],
     id: "holi-photo"
-  }
+  },
+
+{
+  src: "content/photography/Qurbat.png",
+  title: "Qurbat", 
+  dateTaken: "Circa Summer 2015",
+  uploadDate: "DD-MM-YYYY", 
+  device: "-",
+  description: "Like young love in the streets of Gamla Stan",
+  tags: ["parents", "love"],
+  id: "Qurbat-id"
+},
+
 ];
 
 const writingPieces = [
