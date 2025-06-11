@@ -83,7 +83,7 @@ const designs = [
 const projects = [
   {
     title: "30-Day Challenge: Setting my personal best for a 500-meter swim",
-    meta: "Skill: Controlled breathing, coordination, endurance • 1/30 Days Complete",
+    meta: "Skill: Controlled breathing, coordination, endurance • 4/30 Days Complete",
     description: "My progress and thoughts from a month of swimming consistently. This challenge focuses on improving my swimming technique while building endurance through daily practice.",
     progress: 13.33,
     uploadDate: "07-06-2025",
