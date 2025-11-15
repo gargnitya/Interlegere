@@ -1,1 +1,29 @@
 
+{
+  "photos": [
+    {
+      "title": "Qurbat",
+      "image": "Qurbat.png",
+      "description": "",
+      "uploadDate": "2025-01-01",
+      "tags": ["photography"],
+      "id": "qurbat"
+    },
+    {
+      "title": "Camping",
+      "image": "camping.png",
+      "description": "",
+      "uploadDate": "2025-01-01",
+      "tags": ["photography"],
+      "id": "camping"
+    },
+    {
+      "title": "Holi",
+      "image": "holi.png",
+      "description": "",
+      "uploadDate": "2025-01-01",
+      "tags": ["photography"],
+      "id": "holi"
+    }
+  ]
+}
