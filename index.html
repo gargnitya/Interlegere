@@ -1,143 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Interlegere | To Read Between</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interlegere</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZR553JLQM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GZR553JLQM');
-  </script>
 </head>
-<body>
-  <header class="latin-header">
-    <div class="latin-word">
-      <span class="latin-main">Inter<span class="dot">·</span>le<span class="dot">·</span>ge<span class="dot">·</span>re</span> | ɪn.tɛrˈlɛ.ɡɛ.re</span>
-    </div>
-    <div class="latin-meaning">
-      <span>Latin: "To read between"</span>
-    </div>
-    <div class="latin-tagline">
-      Welcome to my digital playground
-    </div>
-  </header>
 
+<body>
+
+  <!-- Navigation Bar -->
   <nav>
-    <ul>
+    <ul class="tabs">
       <li class="tab active" data-tab="home">Home</li>
       <li class="tab" data-tab="writing">Writing</li>
       <li class="tab" data-tab="photography">Photography</li>
-      <li class="tab" data-tab="product-design">Product Design</li>
+      <li class="tab" data-tab="design">Product Design</li>
       <li class="tab" data-tab="personal-projects">Personal Projects</li>
       <li class="tab" data-tab="tags">Tags</li>
       <li class="tab" data-tab="about">About Me</li>
     </ul>
   </nav>
 
-  <main>
-    <!-- Home -->
-    <section id="home" class="tab-content active">
-      <h2>Published Lately</h2>
-      <div class="latest-posts" id="latest-posts"></div>
-    </section>
+  <!-- HOME -->
+  <section id="home" class="tab-content active">
+    <h2>Published Lately</h2>
+    <div id="latest-list" class="latest-grid"></div>
+  </section>
 
-    <!-- Writing -->
-    <section id="writing" class="tab-content">
-      <div class="section-header">
-        <h2>I write to make sense of the world for myself</h2>
-      </div>
-      <div id="writing-list"></div>
-    </section>
+  <!-- WRITING -->
+  <section id="writing" class="tab-content">
+    <h2>Writing</h2>
+    <div id="writing-list" class="writing-grid"></div>
+  </section>
 
-    <!-- Photography -->
-    <section id="photography" class="tab-content">
-      <h2>Just a curious onlooker, sometimes moved to capture</h2>
-      <div class="photo-grid" id="photo-grid"></div>
-    </section>
+  <!-- PHOTOGRAPHY -->
+  <section id="photography" class="tab-content">
+    <h2>Photography</h2>
+    <div class="photo-grid" id="photo-grid"></div>
+    <div class="photo-scroll">
+      <button id="photo-prev">❮</button>
+      <button id="photo-next">❯</button>
+    </div>
+  </section>
 
-    <!-- Product Design -->
-    <section id="product-design" class="tab-content">
-      <h2>Fascinated with the design of everyday things - here I present my take on a few</h2>
-      <div class="design-list" id="design-list"></div>
-    </section>
+  <!-- PRODUCT DESIGN -->
+  <section id="design" class="tab-content">
+    <h2>Product Design</h2>
+    <div id="design-list" class="design-grid"></div>
+  </section>
 
-    <!-- Personal Projects -->
-    <section id="personal-projects" class="tab-content">
-      <div class="section-header">
-        <h2>A space for the challenges I take on for myself</h2>
-      </div>
-      <div class="projects-list" id="projects-list"></div>
-    </section>
+  <!-- PERSONAL PROJECTS -->
+  <section id="personal-projects" class="tab-content">
+    <h2>Personal Projects</h2>
+    <div class="projects-list" id="projects-list"></div>
+  </section>
 
-    <!-- Tags -->
-    <section id="tags" class="tab-content">
-      <h2>Browse by Tag</h2>
-      <div class="tag-container">
-        <div class="tag-list" id="tag-list"></div>
-        <div class="tag-results" id="tag-results"></div>
-      </div>
-    </section>
+  <!-- TAGS -->
+  <section id="tags" class="tab-content">
+    <h2>Explore by Tag</h2>
+    <div id="tag-list" class="tag-grid"></div>
+    <h3>Content Under This Tag</h3>
+    <div id="tag-results" class="tag-results-grid"></div>
+  </section>
 
-    <!-- About Me -->
-    <section id="about" class="tab-content">
-      <h2>About Me</h2>
-      <div class="about-content">
-        <img src="placeholder-image.svg" alt="Your Portrait" class="about-portrait">
-        <p>
-          Hi! I am Nitya Garg and this is my digital playground where I share my journey, experiments, and creations.<br><br>
-          <strong>Connect with me:</strong><br>
-          <a href="#" target="_blank" class="social-link">Instagram</a> |
-          <a href="#" target="_blank" class="social-link">Twitter</a> |
-          <a href="#" target="_blank" class="social-link">LinkedIn</a>
-        </p>
-      </div>
-    </section>
-  </main>
+  <!-- ABOUT ME -->
+  <section id="about" class="tab-content">
+    <h2>About Me</h2>
+    <div id="about-content" class="about-body"></div>
+  </section>
 
-  <!-- Content Page Modal -->
-  <div id="content-modal" class="modal" style="display:none;">
+  <!-- Modal for Projects -->
+  <div id="project-modal" class="modal">
     <div class="modal-content">
-      <div class="breadcrumb" id="breadcrumb"></div>
-      <span class="close" onclick="closeModal()">&times;</span>
+      <span class="close" onclick="closeProjectModal()">&times;</span>
       <div id="modal-body"></div>
-      <div id="related-content">
-        <h3>Related Content</h3>
-        <div id="related-list"></div>
-      </div>
+      <h3>Related Content</h3>
+      <div id="related-list"></div>
     </div>
   </div>
 
   <!-- Photo Lightbox -->
-  <div id="photo-lightbox" class="lightbox" style="display:none;">
+  <div id="photo-lightbox" class="lightbox">
     <div class="lightbox-content">
       <span class="close" onclick="closeLightbox()">&times;</span>
-      <div class="lightbox-nav">
-        <button class="nav-btn prev" onclick="previousPhoto()">❮</button>
-        <button class="nav-btn next" onclick="nextPhoto()">❯</button>
-      </div>
-      <img id="lightbox-image" src="" alt="">
-      <div class="lightbox-info">
-        <h3 id="lightbox-title"></h3>
-        <p class="lightbox-dates">
-          <span id="lightbox-date-taken"></span> | 
-          <span id="lightbox-date-uploaded"></span>
-        </p>
-<p id="lightbox-device"></p>
-        <p id="lightbox-description"></p>
-        <div class="lightbox-tags" id="lightbox-tags"></div>
-      </div>
+      <button class="nav-btn prev" onclick="previousPhoto()">❮</button>
+      <img id="lightbox-img" src="" alt="">
+      <button class="nav-btn next" onclick="nextPhoto()">❯</button>
     </div>
   </div>
 
-  <footer>
-    &copy; 2025 Nitya Garg. All rights reserved.
-  </footer>
-
   <script src="script.js"></script>
+
 </body>
+
 </html>
